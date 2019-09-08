@@ -2,6 +2,10 @@
 
 **LinkedInJobsScrapeR** is an `R` package for scraping LinkedIn job ads and building a tidy dataset for analysis.
 
+Using this package, you can scrape thousands of job ads specific to job titles, locations, and experience levels that you're interested in. For example, maybe you are interested in seeing Entry-level "data scientist" jobs in the greater New York City and San Francisco areas. You can do that!
+
+Note: For any given search query, LinkedIn will only return 1000 results. As a consequence, if you want more complete job listings data, then you may want to specify more narrow search criteria (e.g., smaller geo-regions). Some users may only need a sample of job ads because they are interested in making inferences about a population of job ads, in which case the 1000 limit may not be a problem.
+
 ## Installation
 
 1. Install `Node.js` ([download page](https://nodejs.org/en/download))
@@ -14,10 +18,10 @@ Open a system terminal and run
 npm install puppeteer puppeteer-extra puppeteer-extra-plugin-stealth
 ```
 
-3. Install `LinkedInJobsScrapeR`
+3. Install `LinkedInJobsScrapeR` with vignettes
 
 ```
-devtools::install_github("tylerburleigh/LinkedInJobsScrapeR")
+devtools::install_github("tylerburleigh/LinkedInJobsScrapeR", build_vignettes = TRUE)
 ```
 
 4. Download and unzip Chromium ([download page](https://download-chromium.appspot.com/))
@@ -26,58 +30,16 @@ devtools::install_github("tylerburleigh/LinkedInJobsScrapeR")
 
 ## Usage
 
-### Scraping the data
+`LinkedInJobsScrapeR` is used in two stages: 
 
-The `scrape_job()` function is used to invoke a Node.js script that will: (1) open a browser window to a LinkedIn search results page, (2) click on each of the job ads, and (3) save each one to a file. After the files are scraped, operations are performed to organizes the files into folders named according to the job title, experience level, and locations used for scraping.
+1. Scraping job listings
+2. Extracting data and creating a tidy dataset
 
-The following directory structure is used for saving the scraped files.
-
-```
-data/
-└── job title/
-    └── experience level/
-        └── location/
-            └── file
-```
-
-A recipe for using the package to scrape job ads is given in `inst/scrape_recipe.R`, with job titles, locations, and experience levels for the recipe defined in `inst/scrape_definitions.R`.
+See the vignettes for these topics:
 
 ```
-# Load information about the jobs to scrape
-source("inst/scrape_definitions.R")
-
-# For the jobs to scrape, loop through all of the...
-#   i = locations
-#   k = experience levels
-#   j = job titles
-for(i in 1:length(locations)){
-  for(k in 1:length(experience_levels)){
-    for (j in 1:length(job_titles)){
-      
-      print(paste0("CURRENT JOB: ", 
-                    job_titles[j], ": ", 
-                    experience_levels[k], ": ", 
-                    locations[i]))
-      
-      # Check if files exist in the directory
-      #   and skip if they do
-      files <- list.files(paste0('data/',
-                                job_titles_abbv[j], '/',
-                                experience_levels[k], '/',
-                                locations_abbv[i]))
-      if(length(files) > 0) next
-      
-      scrape_job(locations_index = i,
-                       experience_level_index = k,
-                       job_titles_index = j)  
-    }
-  }
-}
-```
-
-This will scrape and save all of the files to the `data/` folder.
-
-### Building a tidy dataset from the scraped files
-
+utils::vignette("scraping")
+utils::vignette("extracting")
+``
 
 
