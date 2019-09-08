@@ -22,7 +22,7 @@ devtools::install_github("tylerburleigh/LinkedInJobsScrapeR")
 
 4. Download and unzip Chromium ([download page](https://download-chromium.appspot.com/))
 
-5. Open `inst/nodejs/scrape.js` and change the executable path to point it to Chromium's `chrome.exe` (on line 40)
+5. Open `inst/nodejs/scrape.js` and change the executable path (line 40) to point it to Chromium's `chrome.exe`
 
 ## Usage
 
