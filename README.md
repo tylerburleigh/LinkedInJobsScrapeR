@@ -1,4 +1,5 @@
-# LinkedInJobsScrapeR: Scrape LinkedIn job ads using R and Node.js
+# LinkedInJobsScrapeR: 
+# Scrape LinkedIn job ads using R and Node.js
 
 **LinkedInJobsScrapeR** is an `R` package that you can use to scrape LinkedIn job ads and build a tidy dataset for analysis. It uses `Node.js` in addition to `R`.
 
