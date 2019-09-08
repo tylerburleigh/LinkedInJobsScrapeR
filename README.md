@@ -4,8 +4,6 @@
 
 Using this package, you can scrape thousands of job ads specific to job titles, locations, and experience levels that you're interested in. For example, maybe you are interested in seeing Entry-level "data scientist" jobs in the greater New York City and San Francisco areas. You can do that!
 
-Note: For any given search query, LinkedIn will only return 1000 results. As a consequence, if you want more complete job listings data, then you may want to specify more narrow search criteria (e.g., smaller geo-regions). Some users may only need a sample of job ads because they are interested in making inferences about a population of job ads, in which case the 1000 limit may not be a problem.
-
 ## Installation
 
 1. Install `Node.js` ([download page](https://nodejs.org/en/download))
@@ -40,6 +38,8 @@ See the vignettes for these topics:
 ```
 utils::vignette("scraping")
 utils::vignette("extracting")
-``
+```
 
+## Note
 
+For any given search query, LinkedIn will only return a maximum of 1000 results. As a consequence, if you want more complete job listings data, then you may want to specify more narrow search criteria (e.g., smaller geo-regions). Some users may only need a sample of job ads because they are interested in making inferences about a population of job ads, in which case the 1000 limit may not be a problem.
