@@ -2,7 +2,7 @@
 
 **LinkedInJobsScrapeR** is an `R` package that you can use to scrape LinkedIn job ads and build a tidy dataset for analysis. It uses `Node.js` in addition to `R`.
 
-# Installation
+## Installation
 
 1. Install `Node.js` ([download page](https://nodejs.org/en/download))
 
@@ -24,9 +24,9 @@ devtools::install_github("tylerburleigh/LinkedInJobsScrapeR")
 
 5. Open `inst/nodejs/scrape.js` and change the executable path so that it points to your Chromium `chrome.exe` (on line 40)
 
-# Usage
+## Usage
 
-## Scraping the data
+### Scraping the data
 
 The `scrape_job()` function is used to invoke a Node.js script that will first open a browser window to a LinkedIn search results page, click on each of the job ads, and save each one to a file. Then a separate function is run that organizes the files into folders that are named according to the job title, experience level, and locations given.
 
@@ -72,7 +72,7 @@ for(i in 1:length(locations)){
 
 This will scrape and save all of the files to the `data/` folder.
 
-## Building a tidy dataset from the scraped files
+### Building a tidy dataset from the scraped files
 
 
 
