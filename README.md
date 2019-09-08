@@ -28,16 +28,16 @@ devtools::install_github("tylerburleigh/LinkedInJobsScrapeR")
 
 ### Scraping the data
 
-The `scrape_job()` function is used to invoke a Node.js script that will first open a browser window to a LinkedIn search results page, click on each of the job ads, and save each one to a file. Then a separate function is run that organizes the files into folders that are named according to the job title, experience level, and locations given.
+The `scrape_job()` function is used to invoke a Node.js script that will: (1) open a browser window to a LinkedIn search results page, (2) click on each of the job ads, and (3) save each one to a file. After the files are scraped, operations are performed to organizes the files into folders named according to the job title, experience level, and locations used for scraping.
 
 The following directory structure is used for saving the scraped files.
 
 ```
 data/
 └── job title/
-	└── experience level/
-		└── location/
-			└── file
+    └── experience level/
+        └── location/
+            └── file
 ```
 
 A recipe for using the package to scrape job ads is given in `inst/scrape_recipe.R`, with job titles, locations, and experience levels for the recipe defined in `inst/scrape_definitions.R`.
