@@ -52,7 +52,12 @@ source("inst/scrape_definitions.R")
 #   j = job titles
 for(i in 1:length(locations)){
   for(k in 1:length(experience_levels)){
-    for (j in 2:length(locations)){
+    for (j in 1:length(job_titles)){
+      
+      print(paste0("CURRENT JOB: ", 
+                    job_titles[j], ": ", 
+                    experience_levels[k], ": ", 
+                    locations[i]))
       
       # Check if files exist in the directory
       #   and skip if they do
