@@ -44,15 +44,15 @@ utils::vignette("extracting")
 
 ### Job market trend analysis
 
-This package is useful for understanding job market trends for career planning. For example, you might want to understand what skills are most sought after in the career you're trying to progress in. Maybe you're a data scientist and you want to know which skill to invest in learning next, or how competitive you are.
+This package is useful for understanding job market trends for career planning. For example, you might want to understand what skills are most sought after in the career you're trying to progress in. Maybe you're a data scientist and you want to know which skill to invest in learning next, or how competitive you are, or if you're over/under-qualified for a type of position.
+
+### Automating the job search
+
+Some positions have thousands of job ads. That can take a lot of work to manually sift through if you have to read each one! If you're in the market for a job, you could scrape job listings, and then run your own filters to curate a list of jobs that seem like a good fit, potentially saving yourself a lot of time and effort.
 
 ### Custom job alerts
 
-This package may also be useful for setting up custom job alerts (because let's face it, the LinkedIn alerts kinda suck), by scraping a list sorted by most recent first.
-
-### Generating a bespoke list of jobs
-
-If you're in the market for a job, you could curate your own list of jobs to apply to. Some positions have thousands of job ads -- that can take a lot of work to manually sift through. What if you could do some text mining to filter the jobs that you think are right for you?
+Let's face it, the LinkedIn job alerts kinda suck. This package could be used to set up custom job alerts. You could write a script that runs on a regular basis to scrape jobs (sorting by most recent first) with custom filters and criteria, and alert yourself if that dream position opens up.
 
 
 ## Note
