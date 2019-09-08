@@ -24,7 +24,7 @@ devtools::install_github("tylerburleigh/LinkedInJobsScrapeR", build_vignettes = 
 
 4. Download and unzip Chromium ([download page](https://download-chromium.appspot.com/))
 
-5. Open `inst/nodejs/scrape.js` and change the executable path (line 40) to point it to Chromium's `chrome.exe`
+5. Open `scrape.js`, located at the path given by `system.file("nodejs", "scrape.js", package = "LinkedInJobsScrapeR")` and change the executable path (line 40) to point it to Chromium's `chrome.exe`
 
 ## Usage
 
