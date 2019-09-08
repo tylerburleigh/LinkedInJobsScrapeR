@@ -1,0 +1,114 @@
+---
+title: "Scraping LinkedIn Job Ads with `LinkedInJobsScrapeR`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{scraping}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this vignette, I will demonstrate how to use `LinkedInJobsScrapeR` for scraping LinkedIn job data. We will specify the job titles, locations, and experience levels that we're interested in scraping data from.
+
+## Defining the parameters
+
+Let's say we're interested in scraping all of the LinkedIn job ads for Entry and Associate level positions in "data scientist" and "data engineer" positions, in the greater New York City and San Francisco areas.
+
+First we define the job parameters by creating three data frames
+1. `job_titles` - defines the job titles to scrape
+2. `locations` - defines the locations to scrape
+3. `experience_levels` - defines the levels of the positions (e.g., entry / associate)
+
+The definitions below are what we're after.
+
+```{r, eval=FALSE}
+# Job titles to scrape job listings for
+job_titles <- c('data scientist', 'data engineer')
+
+# Locations to scrape jobs for
+# The first element in each item is the search query
+# The second element in each item is the abbreviation
+locations <- list(
+  c('New York City Metropolitan Area', 'NYC'),
+  c('San Francisco Bay Area', 'SF')
+)
+
+# Experience levels to scrape jobs for
+#   1 = Entry
+#   2 = Associate
+#   3 = Mid-senior, etc...
+experience_levels <- c(1, 2)
+```
+
+## Scraping -- one at a time?
+
+Now, we could scrape each of the job titles, locations, and experience levels that we're after one at a time.
+
+The `scrape_job()` function is designed to accept indices for each of the dataframes we just created. So if we wanted to scrape the job at index 1 of each of the dataframes defined above ("data scientist", "NYC", and experience level 1), we could call the function like this:
+
+```{r, eval=FALSE}
+scrape_job(job_titles_index = 1,
+           locations_index = 1,
+           experience_level_index = 1)
+```
+
+When we call this function, it will create a directory in our working directory called `data` with the following structure:
+
+```
+data/
+└── job title/
+    └── experience level/
+        └── location/
+            └── file
+```
+
+So after running the function, we can go there to find the scraped ads.
+
+But there's a more efficient way than running one at a time!
+
+## Scraping -- all the things
+
+Instead of running one at a time, we can run them all at once using nested for-loops. The code below will also allow you to re-run in the event of an error or if you have to stop and return later, because at each iteration, before running it checks for the existence of saved ad text files.
+
+```{r, eval=FALSE}
+# For the jobs to scrape, loop through all of the...
+#   i = locations
+#   k = experience levels
+#   j = job titles
+for(i in 1:length(locations)){
+  for(k in 1:length(experience_levels)){
+    for (j in 1:length(job_titles)){
+      
+      print(paste0("CURRENT JOB: ", 
+                    job_titles[j], ": ", 
+                    experience_levels[k], ": ", 
+                    locations[[i]][1]))
+      
+      job_title_no_space <- gsub("\\s", "", job_titles[a])
+      
+      # Check if files exist in the directory
+      #   and skip if they do
+      files <- list.files(paste0('data/',
+                                job_title_no_space, '/',
+                                experience_levels[k], '/',
+                                locations[[i]][2]))
+      if(length(files) > 0) next
+      
+      scrape_job(locations_index = i,
+                       experience_level_index = k,
+                       job_titles_index = j)  
+    }
+  }
+}
+```
+
+
+## End
+
+After running the above, we should have a `data` folder populated with job ads. On to data extraction!

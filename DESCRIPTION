@@ -1,0 +1,25 @@
+Package: LinkedInJobsScrapeR
+Type: Package
+Title: A scraper for LinkedIn Job Ads built with R and NodeJS
+Version: 0.1
+Authors@R: c(person("Tyler", "Burleigh",
+                    role = c("aut", "cre"), 
+                    email = "tylerburleigh@gmail.com",
+                    comment = c(twitter = "https://twitter.com/tylerburleigh")))
+Maintainer: Tyler Burleigh <tylerburleigh@gmail.com>
+Description: A package that allows you to scrape LinkedIn job ads and create a tidy dataset for analysis
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports: 
+	httr,
+	rvest,
+	dplyr,
+	xml2,
+	magrittr,
+	graphics
+RoxygenNote: 6.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
