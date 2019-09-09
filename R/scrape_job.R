@@ -77,11 +77,19 @@ node_scrape <- function(job_title,
     sort
   )
   
-  # Write the URL to the Node.js file
-  path = system.file("nodejs", "scrape.js", 
-                     package = "LinkedInJobsScrapeR")
-  xfun::gsub_file(path, 'var url = ".*"', 
-                  paste0('var url = "', base_url, '"'))
+  # Write the path to url.txt to scrape.js
+  scrapejs_path <- system.file("nodejs", "scrape.js", 
+                               package = "LinkedInJobsScrapeR")
+  url_path <- system.file("nodejs/data", "url.txt", 
+                               package = "LinkedInJobsScrapeR")
+  xfun::gsub_file(scrapejs_path, 'var url_path = ".*"', 
+                  paste0('var url_path = "', url_path, '"'))
+  
+  
+  # Write the url to that file
+  fileConn <- file(url_path)
+  writeLines(base_url, fileConn)
+  close(fileConn)
   
   system(paste0("node ", system.file("nodejs", "scrape.js", package = "LinkedInJobsScrapeR")))
 }

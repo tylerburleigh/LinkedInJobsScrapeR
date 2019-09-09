@@ -6,8 +6,12 @@ const fs = require("fs");
 const pluginStealth = require("puppeteer-extra-plugin-stealth")
 puppeteer.use(pluginStealth())
 
-// R writes the URL here -- DON'T TOUCH
-var url = "x"
+// R writes the path here -- DON'T TOUCH
+var url_path = "C:/Users/tyler/Documents/R/win-library/3.6/LinkedInJobsScrapeR/nodejs/data/url.txt"
+var url;
+fs.readFile(url_path, "utf-8", (err, data) => {
+  url = data
+});
 
 // Delay the async by so many milliseconds
 function delay(timeout) {
@@ -34,7 +38,7 @@ function delay(timeout) {
 	puppeteer.use(pluginStealth())
 
 	const browser = await puppeteer.launch({
-		executablePath: 'C:/Users/tyler/Documents/R/win-library/3.6/LinkedInJobsScrapeR/nodejs/scrape.js',  
+		executablePath: 'C:/Users/tyler/Downloads/chrome-win/chrome.exe', 
 		args: args,
 		ignoreHTTPSErrors: true,
 		headless: false
@@ -54,13 +58,13 @@ function delay(timeout) {
 	console.log(parseInt(job_ad_count.replace(/\D/g,'')) + " ads");
 	// In some rare cases more than 1000 results are returned
 	// for consistency's sake let's force a 40-click limit
-	console.log(Math.ceil(parseInt(job_ad_count.replace(/\D/g,'')) / 25) < 40 ? Math.ceil(parseInt(job_ad_count.replace(/\D/g,'')) / 25) : 40 + " clicks needed");
+	console.log( (Math.ceil(parseInt(job_ad_count.replace(/\D/g,'')) / 25) < 40 ? Math.ceil(parseInt(job_ad_count.replace(/\D/g,'')) / 25) : 40) + " clicks needed");
 
 	// Press "see more jobs" button until all are loaded  
 	// each page has 25 results, so we divide the total ads by 25 to get the
 	// number of times we need to click "see more"
 	for(let i = 1; i < (Math.ceil(parseInt(job_ad_count.replace(/\D/g,'')) / 25) < 40 ? Math.ceil(parseInt(job_ad_count.replace(/\D/g,'')) / 25) : 40); i++){
-		console.log(i)
+		console.log("Click #"+i)
 		await page.$eval('.see-more-jobs', el => el.click());
 		await delay(1000);
 	}
