@@ -6,11 +6,8 @@ const fs = require("fs");
 const pluginStealth = require("puppeteer-extra-plugin-stealth")
 puppeteer.use(pluginStealth())
 
-// R writes the URL to be scraped to a file
-var url;
-fs.readFile("inst/nodejs/data/url.txt", "utf-8", (err, data) => {
-  url = data
-});
+// R writes the URL here -- DON'T TOUCH
+var url = "x"
 
 // Delay the async by so many milliseconds
 function delay(timeout) {
@@ -37,10 +34,10 @@ function delay(timeout) {
 	puppeteer.use(pluginStealth())
 
 	const browser = await puppeteer.launch({
-  	executablePath: 'C:\\Users\\tyler\\Downloads\\chrome-win\\chrome.exe',  
-  	args: args,
-  	ignoreHTTPSErrors: true,
-  	headless: false
+		executablePath: 'C:/Users/tyler/Documents/R/win-library/3.6/LinkedInJobsScrapeR/nodejs/scrape.js',  
+		args: args,
+		ignoreHTTPSErrors: true,
+		headless: false
 	});
 
 	const page = await browser.newPage();

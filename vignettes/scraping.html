@@ -321,10 +321,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb1-10" title="10">)</a>
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12"><span class="co"># Experience levels to scrape jobs for</span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="co">#   1 = Entry</span></a>
-<a class="sourceLine" id="cb1-14" title="14"><span class="co">#   2 = Associate</span></a>
-<a class="sourceLine" id="cb1-15" title="15"><span class="co">#   3 = Mid-senior, etc...</span></a>
-<a class="sourceLine" id="cb1-16" title="16">experience_levels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">#   1 = Intern</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">#   2 = Entry</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">#   3 = Associate</span></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">#   4 = Mid-senior</span></a>
+<a class="sourceLine" id="cb1-17" title="17">experience_levels &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>)</a></code></pre></div>
 </div>
 <div id="scraping-one-at-a-time" class="section level2">
 <h2>Scraping – one at a time?</h2>
@@ -358,7 +359,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <a class="sourceLine" id="cb4-11" title="11">                    experience_levels[k], <span class="st">&quot;: &quot;</span>, </a>
 <a class="sourceLine" id="cb4-12" title="12">                    locations[[i]][<span class="dv">1</span>]))</a>
 <a class="sourceLine" id="cb4-13" title="13">      </a>
-<a class="sourceLine" id="cb4-14" title="14">      job_title_no_space &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">s&quot;</span>, <span class="st">&quot;&quot;</span>, job_titles[a])</a>
+<a class="sourceLine" id="cb4-14" title="14">      job_title_no_space &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">s&quot;</span>, <span class="st">&quot;&quot;</span>, job_titles[j])</a>
 <a class="sourceLine" id="cb4-15" title="15">      </a>
 <a class="sourceLine" id="cb4-16" title="16">      <span class="co"># Check if files exist in the directory</span></a>
 <a class="sourceLine" id="cb4-17" title="17">      <span class="co">#   and skip if they do</span></a>

@@ -77,11 +77,11 @@ node_scrape <- function(job_title,
     sort
   )
   
-  
-  fileConn <- file(system.file("nodejs/data", "url.txt", 
-                               package = "LinkedInJobsScrapeR"))
-  writeLines(base_url, fileConn)
-  close(fileConn)
+  # Write the URL to the Node.js file
+  path = system.file("nodejs", "scrape.js", 
+                     package = "LinkedInJobsScrapeR")
+  xfun::gsub_file(path, 'var url = ".*"', 
+                  paste0('var url = "', base_url, '"'))
   
   system(paste0("node ", system.file("nodejs", "scrape.js", package = "LinkedInJobsScrapeR")))
 }
