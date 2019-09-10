@@ -50,8 +50,6 @@ for(i in 1:length(locations)){
       
       job_title_no_space <- gsub("\\s", "", job_titles[j])
       
-      # Check if files exist in the directory
-      #   and skip if they do
       file <- list.files(paste0('data/',
                                  job_title_no_space, '/',
                                  experience_levels[k], '/',
